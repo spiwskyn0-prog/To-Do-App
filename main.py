@@ -1,4 +1,5 @@
 from tkinter import *
+from db import *
 
 ############### Cores usadas ###############
 
@@ -55,8 +56,12 @@ listbox.configure(selectbackground=co3, selectforeground="white")
 
 ################# adicionando tarefas na listbox #################
 
-tarefas = ["Estudar Python e SQL", "Almoçar", "Desenvolver um Projeto Pessoal", "Jogar Videogame"]
-for tarefa in tarefas:
-    listbox.insert(END, tarefa)
+def mostrar():
+    tarefas = selecionar()
+    for tarefa in tarefas:
+        listbox.insert(END, tarefa[1])
+
+        
+mostrar()
 
 janela.mainloop()
