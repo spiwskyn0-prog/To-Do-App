@@ -43,3 +43,20 @@ b_remover.grid(row=0, column=1, sticky=NSEW, pady=1)
 
 b_atualizar = Button(frame_e_cima, text="Atualizar", width=10, height=1, bg=co5, fg="white", font="5", anchor="center", relief=RAISED)
 b_atualizar.grid(row=0, column=2, sticky=NSEW, pady=1)
+
+############### Adicionando um Label e a Listbox ###############
+
+label = Label(frame_direita, text="Tarefas", width=37, height=1, pady=7, padx=10, relief=RAISED, anchor=W, font=("COURIER 18 bold"), fg=co0, bg=co2)
+label.grid(row=0, column=0, sticky=NSEW, pady=1)
+
+listbox = Listbox(frame_direita, font=("Arial 9 bold"), width=1)
+listbox.grid(row=1, column=0, sticky=NSEW, pady=3)
+listbox.configure(selectbackground=co3, selectforeground="white")
+
+################# adicionando tarefas na listbox #################
+
+tarefas = ["Estudar Python e SQL", "Almoçar", "Desenvolver um Projeto Pessoal", "Jogar Videogame"]
+for tarefa in tarefas:
+    listbox.insert(END, tarefa)
+
+janela.mainloop()
