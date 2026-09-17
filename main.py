@@ -34,15 +34,34 @@ frame_e_cima.grid(row=0, column=0, sticky=NSEW)
 frame_e_baixo = Frame(frame_esquerda, width=300, height=150, bg=co2, relief=RAISED)
 frame_e_baixo.grid(row=1, column=0, sticky=NSEW)
 
+
+def main(a):
+    ### B Novo ###
+    if a == "novo":
+        print("novo")
+
+    lb = Label(frame_e_baixo, text="Insira nova tarefa", width=42, height=5, pady=15, anchor=CENTER)
+    lb.grid(row=0, column=0, sticky=NSEW)
+
+    entry = Entry(frame_e_baixo, width=15)
+    entry.grid(row=1, column=0, sticky=NSEW)
+
+    b_adicionar = Button(frame_e_baixo, text="Adicionar", width=9, height=1, bg=co6, fg=co0, font="8", anchor="center", relief=RAISED, pady=10)
+    b_adicionar.grid(row=2, column=0, sticky=NSEW, pady=15)
+
+    ### B Atualizar ###
+    if a == "Atualizar":
+        print("Atualizar")
+
 ############### Criando os Botões ###############
 
-b_novo = Button(frame_e_cima, text="Novo", width=10, height=1, bg=co3, fg="white", font="5", anchor="center", relief=RAISED)
+b_novo = Button(frame_e_cima, text="Novo", width=10, height=1, bg=co3, fg="white", font="5", anchor="center", relief=RAISED, command=lambda: main("novo"))
 b_novo.grid(row=0, column=0, sticky=NSEW, pady=1)
 
 b_remover = Button(frame_e_cima, text="Remover", width=10, height=1, bg=co4, fg="white", font="5", anchor="center", relief=RAISED)
 b_remover.grid(row=0, column=1, sticky=NSEW, pady=1)
 
-b_atualizar = Button(frame_e_cima, text="Atualizar", width=10, height=1, bg=co5, fg="white", font="5", anchor="center", relief=RAISED)
+b_atualizar = Button(frame_e_cima, text="Atualizar", width=10, height=1, bg=co5, fg="white", font="5", anchor="center", relief=RAISED, command=lambda: main("Atualizar"))
 b_atualizar.grid(row=0, column=2, sticky=NSEW, pady=1)
 
 ############### Adicionando um Label e a Listbox ###############
