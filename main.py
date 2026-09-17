@@ -38,30 +38,76 @@ frame_e_baixo.grid(row=1, column=0, sticky=NSEW)
 def main(a):
     ### B Novo ###
     if a == "novo":
-        print("novo")
+        for widget in frame_e_baixo.winfo_children():
+            widget.destroy()
 
-    lb = Label(frame_e_baixo, text="Insira nova tarefa", width=42, height=5, pady=15, anchor=CENTER)
-    lb.grid(row=0, column=0, sticky=NSEW)
+        def adicionar():
+            tarefa_entry = entry.get()
+            inserir([tarefa_entry])
+            mostrar()
 
-    entry = Entry(frame_e_baixo, width=15)
-    entry.grid(row=1, column=0, sticky=NSEW)
+        lb = Label(frame_e_baixo, text="Insira nova tarefa", width=44, height=5, pady=15, anchor=CENTER)
+        lb.grid(row=0, column=0, sticky=NSEW)
 
-    b_adicionar = Button(frame_e_baixo, text="Adicionar", width=9, height=1, bg=co6, fg=co0, font="8", anchor="center", relief=RAISED, pady=10)
-    b_adicionar.grid(row=2, column=0, sticky=NSEW, pady=15)
+        entry = Entry(frame_e_baixo, width=20)
+        entry.grid(row=1, column=0, sticky=NSEW)
+
+        b_adicionar = Button(frame_e_baixo, text="Adicionar", width=9, height=1, bg=co6, fg=co0, font="8", anchor="center", relief=RAISED, command=adicionar)
+        b_adicionar.grid(row=2, column=0, sticky=NSEW, pady=1)
 
     ### B Atualizar ###
-    if a == "Atualizar":
-        print("Atualizar")
+    if a == "atualizar":
+        for widget in frame_e_baixo.winfo_children():
+            widget.destroy()
+
+        def on():
+
+            lb = Label(frame_e_baixo, text="atualizar tarefa", width=44, height=5, pady=15, anchor=CENTER)
+            lb.grid(row=0, column=0, sticky=NSEW)
+
+            entry = Entry(frame_e_baixo, width=20)
+            entry.grid(row=1, column=0, sticky=NSEW)
+
+            valor_sl = listbox.curselection()[0]
+            palavra = listbox.get(valor_sl)
+            entry.insert(0, palavra)
+
+            tarefas = selecionar()
+
+            def alterar():
+                for tarefa in tarefas:
+                    if palavra == tarefa[1]:
+                        nova_palavra = [entry.get(), tarefa[0]]
+                        atualizar(nova_palavra)
+                        entry.delete(0, END)
+                mostrar()
+
+            b_alterar = Button(frame_e_baixo, text="atualizar", width=9, height=1, bg=co6, fg=co0, font="8", anchor="center", relief=RAISED, command = alterar)
+            b_alterar.grid(row=2, column=0, sticky=NSEW, pady=1)            
+
+        on()
+
+############### Função Remover ###############
+def remover():
+    valor_sl = listbox.curselection()[0]
+    palavra = listbox.get(valor_sl)
+    tarefas = selecionar()
+
+    for tarefa in tarefas:
+        if palavra == tarefa[1]:
+            deletar([tarefa[0]])
+    mostrar()
+
 
 ############### Criando os Botões ###############
 
-b_novo = Button(frame_e_cima, text="Novo", width=10, height=1, bg=co3, fg="white", font="5", anchor="center", relief=RAISED, command=lambda: main("novo"))
+b_novo = Button(frame_e_cima, text="Novo", width=8, height=1, bg=co3, fg="white", font="4", anchor="center", relief=RAISED, command=lambda: main("novo"))
 b_novo.grid(row=0, column=0, sticky=NSEW, pady=1)
 
-b_remover = Button(frame_e_cima, text="Remover", width=10, height=1, bg=co4, fg="white", font="5", anchor="center", relief=RAISED)
+b_remover = Button(frame_e_cima, text="Remover", width=8, height=1, bg=co4, fg="white", font="4", anchor="center", relief=RAISED, command = remover)
 b_remover.grid(row=0, column=1, sticky=NSEW, pady=1)
 
-b_atualizar = Button(frame_e_cima, text="Atualizar", width=10, height=1, bg=co5, fg="white", font="5", anchor="center", relief=RAISED, command=lambda: main("Atualizar"))
+b_atualizar = Button(frame_e_cima, text="Atualizar", width=8, height=1, bg=co5, fg="white", font="4", anchor="center", relief=RAISED, command=lambda: main("atualizar"))
 b_atualizar.grid(row=0, column=2, sticky=NSEW, pady=1)
 
 ############### Adicionando um Label e a Listbox ###############
@@ -76,6 +122,7 @@ listbox.configure(selectbackground=co3, selectforeground="white")
 ################# adicionando tarefas na listbox #################
 
 def mostrar():
+    listbox.delete(0, END)
     tarefas = selecionar()
     for tarefa in tarefas:
         listbox.insert(END, tarefa[1])
