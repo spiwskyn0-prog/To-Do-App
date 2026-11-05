@@ -25,7 +25,6 @@ Estrutura do projeto
 To-Do-App/
 ├── main.py
 ├── db.py
-├── lista.db
 └── README.md
 
 Como executar
