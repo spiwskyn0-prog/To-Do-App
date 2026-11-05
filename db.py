@@ -1,8 +1,17 @@
 import sqlite3 as lite
 
-# Criando Banco de Dados
+# Conexão com o banco de dados
 connector = lite.connect("lista.db")
 
+# Criação automática da tabela
+with connector:
+    cur = connector.cursor()
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS tarefa (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nome TEXT
+        )
+    """)
 
 def inserir(i):
     with connector:
@@ -34,9 +43,3 @@ def atualizar(i):
         cur = connector.cursor()
         query = "UPDATE tarefa SET nome = ? WHERE id = ?"
         cur.execute(query, i)
-
-
-#with connector:
-#    cur = connector.cursor()
-#    cur.execute("CREATE TABLE tarefa(id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT)")
-
