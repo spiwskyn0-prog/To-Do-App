@@ -25,7 +25,7 @@ To-Do-App/
 └── README.md
 
 <div align="center">
-  <img src="https://github.com/spiwskyn0-prog/To-Do-App/issues/1#issue-6234079611" />">
+  <img src="assets/interface.png" />">
 </div>
 
 ## Como executar
