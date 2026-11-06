@@ -25,7 +25,7 @@ To-Do-App/
 └── README.md
 
 <div align="center">
-  <img src="assets/interface.png" />">
+  <img src="assets/interface.png">
 </div>
 
 ## Como executar
